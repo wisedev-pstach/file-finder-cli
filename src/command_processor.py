@@ -5,20 +5,20 @@ my_parser = argparse.ArgumentParser(description='Finding files in path', usage='
 my_parser.add_argument("--input", "-i", help="input for search engine", type=str)
 my_parser.add_argument("--current", "-c", help="specification about the scope of searching - current directory", action='store_true')
 my_parser.add_argument("--full", "-f", help="specification about the scope of searching - whole system", action='store_true')
-my_parser.add_argument("--disc", "-d", help="specification about the scope of searching - disc (as example --disc=D", action='store_true')
-my_parser.add_argument("--directory", "-dir", help="specification about the scope of searching - disc (as example --directory=temp", action='store_true')
+my_parser.add_argument("--disc", "-d", help="specification about the scope of searching - disc (as example --disc=D")
+my_parser.add_argument("--directory", "-dir", help="specification about the scope of searching - disc (as example --directory=temp")
 args = my_parser.parse_args()
 
 
 def define_command():
     if args.current:
-        return SearchOptions.CURRENT_DIR
+        return SearchOptions.CURRENT_DIR, None
     elif args.full:
-        return SearchOptions.FULL
+        return SearchOptions.FULL, None
     elif args.disc:
-        return SearchOptions.DISC
+        return SearchOptions.DISC, args.disc + "://"
     elif args.directory:
-        return SearchOptions.DIR
+        return SearchOptions.DIR, args.directory
 
 def get_input():
     return args.input

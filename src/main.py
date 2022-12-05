@@ -11,12 +11,18 @@ async def main():
     counter = 0
     args = sys.argv
 
-    command = define_command()
+    command, param = define_command()
     input = get_input()
  
     match command:
         case SearchOptions.FULL:
             search_full_system(input)
+        case SearchOptions.DISC:
+            search_disc(input, param)
+        case SearchOptions.DIR:
+            search_directory(input, param)
+        case SearchOptions.CURRENT_DIR:
+            search_current_dir(input)
 
     print(f"Found {counter} files.")
 

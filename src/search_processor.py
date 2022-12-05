@@ -19,3 +19,18 @@ def search_full_system(input):
     loop = asyncio.get_event_loop()
     queue = asyncio.gather(*[search_drive(drv,input) for drv in azDiscs()])  
     loop.run_until_complete(queue) 
+
+def search_disc(input, disc):
+    loop = asyncio.get_event_loop()
+    queue = asyncio.gather(*[search_drive(disc,input)])  
+    loop.run_until_complete(queue) 
+
+def search_current_dir(input):
+    loop = asyncio.get_event_loop()
+    queue = asyncio.gather(*[search_drive(os.getcwd(), input)])  
+    loop.run_until_complete(queue) 
+
+def search_directory(input, dir):
+    loop = asyncio.get_event_loop()
+    queue = asyncio.gather(*[search_drive(dir, input)])
+    loop.run_until_complete(queue)
